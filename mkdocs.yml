@@ -4,10 +4,14 @@ site_url: https://donkey-roll.github.io/distributed-system/
 
 repo_name: donkey-roll/distributed-system
 repo_url: https://github.com/donkey-roll/distributed-system
+edit_uri: edit/main/docs/
 
 theme:
   name: material
   language: zh
+  icon:
+    logo: material/server-network
+    repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -25,12 +29,27 @@ theme:
         name: 切换至浅色模式
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.expand
+    - navigation.path
     - navigation.top
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
+    - content.code.annotate
     - content.tabs.link
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - admonition
@@ -54,36 +73,39 @@ markdown_extensions:
       permalink: true
 
 nav:
-  - 课程导读与大纲: index.md
-  - 第一阶段 - 基础与并发控制:
-      - LEC 01 - 分布式系统导论与 MapReduce: 01_intro_mapreduce.md
-      - LEC 02 - RPC 与 Go 并发编程实践: 02_rpc_threads_go.md
-  - 第二阶段 - 主备复制与一致性模型:
-      - LEC 03 - 主备复制与容错虚拟机 (VMware FT): 03_vm_ft_replication.md
-      - LEC 04 - 一致性模型与线性化 (Linearizability): 04_linearizability.md
-  - 第三阶段 - 共识算法与状态机复制 (Raft):
-      - LEC 05 - Raft 共识算法核心与选主机制: 05_raft_part1.md
-      - LEC 06 - 现代分布式 Go 编程范式: 06_go_patterns.md
-      - LEC 07 - Raft 日志压缩与持久化状态: 07_raft_part2.md
-      - LEC 11 - Raft 实验实现难点与答疑: 11_raft_qa.md
-  - 第四阶段 - 分布式存储与协同系统:
-      - LEC 08 - Google File System (GFS) 架构深析: 08_gfs.md
-      - LEC 09 - ZooKeeper 分布式协同与无锁读: 09_zookeeper.md
-  - 第五阶段 - 分布式事务与跨节点一致性:
-      - LEC 10 - 分布式事务与两阶段提交 (2PC): 10_distributed_tx_2pc.md
-      - LEC 12 - Google Spanner 与 TrueTime 外部一致性: 12_spanner_truetime.md
-      - LEC 13 - 乐观并发控制与 RDMA 极速存储 (FaRM): 13_farm_occ_rdma.md
-      - LEC 14 - 云原生事务系统 Chardonnay: 14_chardonnay.md
-  - 第六阶段 - 系统形式化验证、缓存与云原生基础设施:
-      - LEC 15 - 分布式系统形式化验证 (Grove): 15_grove_verification.md
-      - LEC 16 - 大规模缓存一致性 (Facebook Memcached): 16_memcached_fb.md
-      - LEC 17 - Amazon DynamoDB 架构与事务实现: 17_dynamodb.md
-      - LEC 18 - Serverless 与按需容器加载 (AWS Lambda): 18_aws_lambda.md
-      - LEC 19 - 分布式 AI 与计算调度引擎 (Ray): 19_ray.md
-  - 第七阶段 - 弱一致性、去中心化与拜占庭容错:
-      - LEC 20 - 分叉一致性与非可信存储 (SUNDR): 20_sundr.md
-      - LEC 21 - 点对点网络与比特币中本聪共识: 21_bitcoin.md
-      - LEC 22 - 实用拜占庭容错算法 (PBFT): 22_pbft.md
-  - 附录与实验:
+  - 课程总览: index.md
+  - 基础·复制·共识:
+      - 第一阶段 - 基础与并发:
+          - LEC 01 - 分布式导论与 MapReduce: 01_intro_mapreduce.md
+          - LEC 02 - RPC 与 Go 并发编程实践: 02_rpc_threads_go.md
+      - 第二阶段 - 主备复制与一致性模型:
+          - LEC 03 - 主备复制与容错虚拟机 (VMware FT): 03_vm_ft_replication.md
+          - LEC 04 - 一致性模型与线性化: 04_linearizability.md
+      - 第三阶段 - 共识算法与状态机复制 (Raft):
+          - LEC 05 - Raft 选主机制与法定人数: 05_raft_part1.md
+          - LEC 06 - 现代分布式 Go 编程范式: 06_go_patterns.md
+          - LEC 07 - Raft 日志压缩与持久化状态: 07_raft_part2.md
+          - LEC 11 - Raft 实验实现难点与答疑: 11_raft_qa.md
+  - 存储·协调·分布式事务:
+      - 第四阶段 - 分布式存储与协同系统:
+          - LEC 08 - Google File System (GFS): 08_gfs.md
+          - LEC 09 - ZooKeeper 分布式协同与无锁读: 09_zookeeper.md
+      - 第五阶段 - 分布式事务与跨节点一致性:
+          - LEC 10 - 分布式事务与两阶段提交 (2PC): 10_distributed_tx_2pc.md
+          - LEC 12 - Google Spanner 与 TrueTime: 12_spanner_truetime.md
+          - LEC 13 - 乐观并发控制与 RDMA 极速存储 (FaRM): 13_farm_occ_rdma.md
+          - LEC 14 - 云原生事务系统 Chardonnay: 14_chardonnay.md
+  - 云原生·P2P·拜占庭:
+      - 第六阶段 - 系统验证、缓存与云原生基础设施:
+          - LEC 15 - 分布式系统形式化验证 (Grove): 15_grove_verification.md
+          - LEC 16 - 大规模缓存一致性 (Facebook Memcached): 16_memcached_fb.md
+          - LEC 17 - Amazon DynamoDB 架构与事务实现: 17_dynamodb.md
+          - LEC 18 - Serverless 与按需容器加载 (AWS Lambda): 18_aws_lambda.md
+          - LEC 19 - 分布式 AI 与计算调度引擎 (Ray): 19_ray.md
+      - 第七阶段 - 弱一致性、去中心化与拜占庭容错:
+          - LEC 20 - 分叉一致性与非可信存储 (SUNDR): 20_sundr.md
+          - LEC 21 - 点对点网络与比特币中本聪共识: 21_bitcoin.md
+          - LEC 22 - 实用拜占庭容错算法 (PBFT): 22_pbft.md
+  - 附录与实战:
       - 附录 A - 分布式系统核心概念与 FAQ: appendix_concepts_faq.md
       - 附录 B - MIT 6.5840 核心实验通关指南: appendix_labs_overview.md
