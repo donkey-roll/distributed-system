@@ -15,27 +15,27 @@ mindmap
   root((分布式系统核心基石))
     容错与状态机复制
       Fail-Stop 模型
-      状态转移 vs 状态机复制 (SMR)
-      指令级复制 (VMware FT)
-      应用级共识 (Raft / Paxos)
+      状态转移 vs 状态机复制（SMR）
+      指令级复制（VMware FT）
+      应用级共识（Raft / Paxos）
       Output Rule 强一致屏障
     一致性与顺序保障
-      严格线性化 (Linearizability)
-      顺序一致性 (Sequential)
-      因果一致性 (Causal)
-      分叉一致性 (Fork Consistency - SUNDR)
-      最终一致性 (Eventual)
+      严格线性化（Linearizability）
+      顺序一致性（Sequential）
+      因果一致性（Causal）
+      分叉一致性（Fork Consistency - SUNDR）
+      最终一致性（Eventual）
     分布式事务与并发
-      两阶段提交 (2PC)
-      两阶段锁 (2PL)
-      乐观并发控制 (FaRM OCC)
-      TrueTime 与外部一致性 (Spanner)
+      两阶段提交（2PC）
+      两阶段锁（2PL）
+      乐观并发控制（FaRM OCC）
+      TrueTime 与外部一致性（Spanner）
       跨分区原子提交
     超大规模存储与协同
-      分布式元数据租约 (ZooKeeper)
-      弱写时追加与大块存储 (GFS)
-      全局哈希分区 (DynamoDB)
-      端到端形式化验证 (Grove)
+      分布式元数据租约（ZooKeeper）
+      弱写时追加与大块存储（GFS）
+      全局哈希分区（DynamoDB）
+      端到端形式化验证（Grove）
 ```
 
 ---

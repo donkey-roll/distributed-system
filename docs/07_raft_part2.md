@@ -10,10 +10,10 @@
 在实际生产集群中，机器随时可能发生掉电或崩溃重启。为了保证重启后不破坏已达成的共识安全性，Raft 节点必须将部分关键状态实时刷盘保存到非易失性存储 (Non-volatile Storage)：
 
 ```mermaid
-classDef persist fill:#fce8e6,stroke:#ea4335,stroke-width:2px;
-classDef volatile fill:#e8f0fe,stroke:#1a73e8,stroke-width:2px;
+flowchart TD
+    classDef persist fill:#fce8e6,stroke:#ea4335,stroke-width:2px;
+    classDef volatile fill:#e8f0fe,stroke:#1a73e8,stroke-width:2px;
 
-graph TD
     subgraph Persistent["必须持久化刷盘状态 (崩溃重启后读取)"]
         T["currentTerm (当前任期)"]:::persist
         V["votedFor (该任期投给谁)"]:::persist

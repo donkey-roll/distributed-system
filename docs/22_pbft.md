@@ -39,9 +39,9 @@ sequenceDiagram
     C->>P: 请求 Request m
     
     Note over P,B3: 阶段 1: Pre-prepare 预准备
-    P->>B1: Pre-prepare <<v, n, d>, m>
-    P->>B2: Pre-prepare <<v, n, d>, m>
-    P->>B3: Pre-prepare <<v, n, d>, m>
+    P->>B1: Pre-prepare [v, n, d, m]
+    P->>B2: Pre-prepare [v, n, d, m]
+    P->>B3: Pre-prepare [v, n, d, m]
 
     Note over P,B3: 阶段 2: Prepare 准备 (全员相互广播)
     B1->>P: Prepare

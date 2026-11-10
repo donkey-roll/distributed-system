@@ -19,23 +19,23 @@
 
 ```mermaid
 flowchart TD
-    Driver[客户端 Python Driver] --> GCS[全局控制中心 Global Control Store]
+    Driver["客户端 Python Driver"] --> GCS["全局控制中心 (Global Control Store)"]
 
     subgraph Node1["计算节点 A"]
-        Scheduler1[Local Scheduler]
+        Scheduler1["Local Scheduler"]
         Plasma1["共享内存对象存储 (Plasma)"]
-        Worker1[Worker Process]
+        Worker1["Worker Process"]
     end
 
     subgraph Node2["计算节点 B"]
-        Scheduler2[Local Scheduler]
+        Scheduler2["Local Scheduler"]
         Plasma2["共享内存对象存储 (Plasma)"]
-        Worker2[Worker Process]
+        Worker2["Worker Process"]
     end
 
     Driver --> Scheduler1
-    Scheduler1 <-->|分布式任务调度协商| Scheduler2
-    Plasma1 == "跨机零拷贝内存直传 (Zero-copy Object Transfer)" ==> Plasma2
+    Scheduler1 <-->|"分布式任务调度协商"| Scheduler2
+    Plasma1 ==>|"跨机零拷贝内存直传 (Zero-copy Object Transfer)"| Plasma2
 ```
 
 - **Bottom-Up 调度策略**：任务先由本节点的 Local Scheduler 评估；若资源充足直接本地派发，消除中心调度器的单点吞吐瓶颈。

@@ -20,20 +20,21 @@
 2. **通道通信 (Channels & CSP)**：流水线事件传递、通知唤醒、Worker 池任务派发。
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph SharedMemory["共享状态锁控制模型"]
-        Lock[sync.Mutex / RWMutex]
-        State[Raft 状态: currentTerm / log / commitIndex]
-        Cond[sync.Cond 条件变量]
+        Lock["sync.Mutex / RWMutex"]
+        State["Raft 状态: currentTerm / log / commitIndex"]
+        Cond["sync.Cond 条件变量"]
         Lock --> State
-        Cond -.->|广播唤醒| State
+        Cond -.->|"广播唤醒"| State
     end
 
     subgraph ChannelModel["CSP 通道消息模型"]
-        Producer[Goroutine A]
-        Chan[buffered / unbuffered channel]
-        Consumer[Goroutine B]
-        Producer -->|发送数据| Chan -->|读取数据| Consumer
+        Producer["Goroutine A"]
+        Chan["buffered / unbuffered channel"]
+        Consumer["Goroutine B"]
+        Producer -->|"发送数据"| Chan
+        Chan -->|"读取数据"| Consumer
     end
 ```
 

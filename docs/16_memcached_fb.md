@@ -17,13 +17,13 @@ Facebook 的工作负载以极端的**读多写少 (Read-heavy)** 为主（例�
 ```mermaid
 flowchart TD
     subgraph Challenge1["挑战 1: 缓存击穿与雪崩 (Thundering Herd)"]
-        K1[热点 Key 失效] --> C1[成千上万并发请求同时未命中]
-        C1 --> DB1[瞬时击垮底层 MySQL]
+        K1["热点 Key 失效"] --> C1["成千上万并发请求同时未命中"]
+        C1 --> DB1["瞬时击垮底层 MySQL"]
         DB1 --> Solution1["【解法】Memcache Leases 租约机制<br/>只向第一个未命中请求发放写入租约 Token<br/>其他请求等待或返回稍旧快照数据"]
     end
 
     subgraph Challenge2["挑战 2: 故障隔离与连环瘫痪"]
-        M1[单台 Memcached 宕机] --> C2[请求大量穿透至数据库引发雪崩]
+        M1["单台 Memcached 宕机"] --> C2["请求大量穿透至数据库引发雪崩"]
         C2 --> Solution2["【解法】Gutter Pool 应急备用池<br/>专设 1% 容量的轻量备用集群<br/>临时承接故障节点的失效写入与短 TTL 缓存"]
     end
 ```

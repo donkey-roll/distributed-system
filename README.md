@@ -63,18 +63,18 @@ flowchart TD
     classDef tx fill:#e6f4ea,stroke:#34a853,stroke-width:1px,color:#137333;
     classDef cloud fill:#fef7e0,stroke:#fbbc04,stroke-width:1px,color:#b06000;
 
-    L1[LEC 01: MapReduce]:::base --> L2[LEC 02: RPC & Threads]:::base
-    L2 --> L3[LEC 03: VMware FT 主备复制]:::smr
-    L3 --> L4[LEC 04: Linearizability 线性化]:::smr
-    L4 --> L5[LEC 05 & 07: Raft 共识协议]:::smr
-    L5 --> L8[LEC 08: GFS 分布式文件系统]:::base
-    L8 --> L9[LEC 09: ZooKeeper 协同服务]:::base
-    L9 --> L10[LEC 10: 2PC 分布式事务]:::tx
-    L10 --> L12[LEC 12: Spanner TrueTime 事务]:::tx
-    L12 --> L13[LEC 13: FaRM 乐观并发控制与 RDMA]:::tx
-    L13 --> L15[LEC 15: Grove 系统形式化验证]:::cloud
-    L15 --> L16[LEC 16-19: 云原生存储/缓存/Serverless/Ray]:::cloud
-    L16 --> L20[LEC 20-22: 拜占庭容错 PBFT & 区块链共识]:::cloud
+    L1["LEC 01: MapReduce"]:::base --> L2["LEC 02: RPC & Threads"]:::base
+    L2 --> L3["LEC 03: VMware FT 主备复制"]:::smr
+    L3 --> L4["LEC 04: Linearizability 线性化"]:::smr
+    L4 --> L5["LEC 05 & 07: Raft 共识协议"]:::smr
+    L5 --> L8["LEC 08: GFS 分布式文件系统"]:::base
+    L8 --> L9["LEC 09: ZooKeeper 协同服务"]:::base
+    L9 --> L10["LEC 10: 2PC 分布式事务"]:::tx
+    L10 --> L12["LEC 12: Spanner TrueTime 事务"]:::tx
+    L12 --> L13["LEC 13: FaRM 乐观并发控制与 RDMA"]:::tx
+    L13 --> L15["LEC 15: Grove 系统形式化验证"]:::cloud
+    L15 --> L16["LEC 16-19: 云原生存储/缓存/Serverless/Ray"]:::cloud
+    L16 --> L20["LEC 20-22: 拜占庭容错 PBFT & 区块链共识"]:::cloud
 ```
 
 详细内容目录请参阅在线文档或 `mkdocs.yml` 导航。

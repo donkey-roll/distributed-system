@@ -27,11 +27,11 @@ ZooKeeper 的核心设计：
    - **补救机制**：引入 `sync()` 系统调用，强制 Follower 将读取指针推进到与 Leader 同步的位点；配合 **Watch 机制**，当数据节点发生变化时，服务端主动向客户端发送异步通知。
 
 ```mermaid
-graph TD
-    Client1[客户端写请求] --> Leader[ZooKeeper Leader]
-    Leader -->|ZAB 多数派广播| F1[Follower 1]
-    Leader -->|ZAB 多数派广播| F2[Follower 2]
+flowchart TD
+    Client1["客户端写请求"] --> Leader["ZooKeeper Leader"]
+    Leader -->|"ZAB 多数派广播"| F1["Follower 1"]
+    Leader -->|"ZAB 多数派广播"| F2["Follower 2"]
 
-    Client2[客户端读请求] -.->|直接本地高速读| F1
-    F1 -.->|发生修改时异步通知| Client2
+    Client2["客户端读请求"] -.->|"直接本地高速读"| F1
+    F1 -.->|"发生修改时异步通知"| Client2
 ```

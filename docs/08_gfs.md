@@ -18,8 +18,8 @@ GFS 是 Google 大数据基石（GFS、MapReduce、Bigtable）的核心第一环
 
 ```mermaid
 flowchart TB
-    Client[客户端 GFS Client]
-    Master[GFS Master 节点<br/>- 内存管理文件目录树<br/>- 维护 Chunk 映射与 60s 租约]
+    Client["客户端 GFS Client"]
+    Master["GFS Master 节点<br/>- 内存管理文件目录树<br/>- 维护 Chunk 映射与 60s 租约"]
 
     subgraph Chunkservers["分布式 Chunkserver 集群"]
         CS_Primary["Primary Chunkserver<br/>(持有写租约 Lease)"]
@@ -30,18 +30,18 @@ flowchart TB
     Client -->|"① 请求 Chunk 句柄与副本位置"| Master
     Master -->|"② 返回 Primary 与 Secondary 列表"| Client
 
-    Client == "③ 流水线传输数据包 (Data Pipelining)" ==> CS_Secondary1
-    CS_Secondary1 == "数据直传" ==> CS_Primary
-    CS_Primary == "数据直传" ==> CS_Secondary2
+    Client ==>|"③ 流水线传输数据包 (Data Pipelining)"| CS_Secondary1
+    CS_Secondary1 ==>|"数据直传"| CS_Primary
+    CS_Primary ==>|"数据直传"| CS_Secondary2
 
     Client -->|"④ 发送写入指令 (Write Command)"| CS_Primary
     CS_Primary -->|"⑤ 确定写入偏移量，分发写指令"| CS_Secondary1
     CS_Primary -->|"⑤ 分发写指令"| CS_Secondary2
 
-    CS_Secondary1 -->>|"⑥ 确认写入"| CS_Primary
-    CS_Secondary2 -->>|"⑥ 确认写入"| CS_Primary
+    CS_Secondary1 -.->|"⑥ 确认写入"| CS_Primary
+    CS_Secondary2 -.->|"⑥ 确认写入"| CS_Primary
 
-    CS_Primary -->>|"⑦ 响应写入成功"| Client
+    CS_Primary -.->|"⑦ 响应写入成功"| Client
 ```
 
 ### 单 Master 为什么不成为性能瓶颈？

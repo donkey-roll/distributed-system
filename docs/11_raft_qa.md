@@ -17,16 +17,16 @@
    - `applyCh` 管道的消费速度可能很慢。如果在持有锁的情况下向非缓冲管道发送，会形成致命的循环等待死锁。
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph AntiPattern["致命死锁反模式"]
-        L1[rf.mu.Lock] --> C1["向 applyCh <- msg 发送"]
-        C1 -.->|阻塞等待消费者读取| W1[无限阻塞卡死]
-        W1 -.-> L2[其他线程无法获取 rf.mu，全系统瘫痪]
+        L1["rf.mu.Lock"] --> C1["向 applyCh <- msg 发送"]
+        C1 -.->|"阻塞等待消费者读取"| W1["无限阻塞卡死"]
+        W1 -.-> L2["其他线程无法获取 rf.mu，全系统瘫痪"]
     end
 
     subgraph BestPractice["正确解耦模式"]
-        L3[rf.mu.Lock] --> Q1[将待提交日志存入本地待发送队列]
-        Q1 --> U1[rf.mu.Unlock]
-        U1 --> C2[独立专职 Goroutine 逐条发送 applyCh]
+        L3["rf.mu.Lock"] --> Q1["将待提交日志存入本地待发送队列"]
+        Q1 --> U1["rf.mu.Unlock"]
+        U1 --> C2["独立专职 Goroutine 逐条发送 applyCh"]
     end
 ```
